@@ -57,21 +57,21 @@ public class Controller {
         String beliLagi = "y";
         Integer totalTransaksi = 0;
         String idKeranjang = DateTimeFormatter.ofPattern("yyMdHHmms").format(now);
-        while (beliLagi.toLowerCase().equals("y")) {
-            System.out.println("Masukkan ID Barang");
-            Integer idBarang = sc.nextInt();
-            Map<String, String> barang = Barang.select(idBarang);
-            String nmBarang = barang.get("namaBarang");
-            Integer hrgBarang = Integer.valueOf(barang.get("hargaBarang"));
-            System.out.println("Barang yang dibeli : " + nmBarang);
-            System.out.println("Masukkan Quantity");
-            Integer qtyBarang = sc.nextInt();
-            Integer total = hrgBarang * qtyBarang;
-            Keranjang.insert(Integer.valueOf(idKeranjang), idBarang, qtyBarang, total);
-            totalTransaksi += total;
-            System.out.println("Beli lagi ?");
-            beliLagi = sc.next();
-        }
+//        while (beliLagi.toLowerCase().equals("y")) {
+//            System.out.println("Masukkan ID Barang");
+//            Integer idBarang = sc.nextInt();
+////            Map<String, String> barang = Barang.select(idBarang);
+////            String nmBarang = barang.get("namaBarang");
+//            Integer hrgBarang = Integer.valueOf(barang.get("hargaBarang"));
+//            System.out.println("Barang yang dibeli : " + nmBarang);
+//            System.out.println("Masukkan Quantity");
+//            Integer qtyBarang = sc.nextInt();
+//            Integer total = hrgBarang * qtyBarang;
+//            Keranjang.insert(Integer.valueOf(idKeranjang), idBarang, qtyBarang, total);
+//            totalTransaksi += total;
+//            System.out.println("Beli lagi ?");
+//            beliLagi = sc.next();
+//        }
 
         Keranjang.select(Integer.valueOf(idKeranjang));
         System.out.println("Uang yang di bayarkan : ");
