@@ -26,6 +26,7 @@ public class Tampilan {
         System.out.println("         2. Pembelian");
         System.out.println("         3. Exit");
         System.out.println("================================");
+        System.out.print("Pilih salah satu: ");
     }
 
     public static void menu_barang() {
@@ -37,8 +38,8 @@ public class Tampilan {
         System.out.println("         3. Edit Barang");
         System.out.println("         4. Hapus Barang");
         System.out.println("         5. Kembali");
-
         System.out.println("================================");
+        System.out.print("Pilih salah satu: ");
         int pilihan;
         pilihan = sc.nextInt();
         Barang brg = new Barang();
@@ -75,5 +76,6 @@ public class Tampilan {
         System.out.println("================================");
         ctr.beliBarang();
         System.out.println("================================");
+        System.out.print("Pilih salah satu: ");
     }
 }
