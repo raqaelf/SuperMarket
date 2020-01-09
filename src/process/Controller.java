@@ -83,7 +83,7 @@ public class Controller {
         Integer pembayaran = sc.nextInt();
         Integer kembalian = pembayaran - totalTransaksi;
         System.out.println("Kembalian : " + kembalian);
-        Transaksi.insert(Integer.valueOf(idKeranjang), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(now), totalTransaksi, pembayaran, kembalian);
+        Transaksi.insert(idKeranjang, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(now), totalTransaksi, pembayaran, kembalian);
         
         if (!beliLagi.toLowerCase().equals("y")) {
             new MainClass().jalankan();
