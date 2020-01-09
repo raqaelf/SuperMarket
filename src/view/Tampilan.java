@@ -14,7 +14,7 @@ import process.Controller;
  * @author Asus
  */
 public class Tampilan {
-    
+
     static Scanner sc = new Scanner(System.in);
     static Controller ctr = new Controller();
 
@@ -24,6 +24,7 @@ public class Tampilan {
         System.out.println("================================");
         System.out.println("         1. Menu Barang");
         System.out.println("         2. Pembelian");
+        System.out.println("         3. Exit");
         System.out.println("================================");
     }
 

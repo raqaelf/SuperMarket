@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -65,13 +67,13 @@ public class Barang {
         
     }
     
-    public void update(Integer id_barang, String nama_barang, Integer harga_barang, Integer stock_barang){
-        
-        String sql = "UPDATE db_barang SET nama_barang=?, harga_barang=?, stock_barang=?, WHERE id_barang=?";
+    public void update(Integer id_barang, String nama_barang, Integer harga_barang, Integer stock_barang) {
+
+        String sql = "UPDATE db_barang SET nama_barang=?, harga_barang=?, stock_barang=? WHERE id_barang=?";
         // lakukan koneksi ke mysql
         MySQLConnection m = new MySQLConnection();
         Connection koneksi = m.conn;
-        
+
         try {
             PreparedStatement statement = koneksi.prepareStatement(sql);
             // mapping nilai parameter ke query sqlnya
@@ -83,10 +85,12 @@ public class Barang {
             // jalankan query, dan baca jumlah row affectednya
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("Update barang sukses");
+                System.out.println("Update data barang sukses");
             }
+            m.close();
         } catch (SQLException ex) {
-             System.out.println("Update barang gagal");
+            System.out.println("Update data barang gagal");
+            m.close();
         }
     }
     
@@ -130,6 +134,39 @@ public class Barang {
     
     }
     
+    public static Map<String, String> select(Integer id_barang) {
+        String sql = "SELECT * FROM db_barang WHERE id_barang=" + id_barang + " LIMIT 1";
+
+        // lakukan koneksi ke mysql
+        MySQLConnection m = new MySQLConnection();
+        Connection koneksi = m.conn;
+
+        try {
+            Statement statement = koneksi.createStatement();
+            // jalankan query
+            ResultSet result = statement.executeQuery(sql);
+
+            // jalankan query
+            if (result.next()) {
+                String idBarang = result.getString("id_barang");
+                String namaBarang = result.getString("nama_barang");
+                String hargaBarang = result.getString("harga_barang");
+                String stockBarang = result.getString("stock_barang");
+
+                Map<String, String> data = new HashMap<>();
+                data.put("idBarang", idBarang);
+                data.put("namaBarang", namaBarang);
+                data.put("hargaBarang", hargaBarang);
+                data.put("stockBarang", stockBarang);
+                m.close();
+                return data;
+            }
+        } catch (SQLException ex) {
+            m.close();
+            return null;
+        }
+        return null;
+    }
     
     
 }

@@ -8,11 +8,13 @@ package process;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import model.Barang;
 import model.Keranjang;
 import model.Transaksi;
 import view.*;
+
 
 /**
  *
@@ -56,22 +58,25 @@ public class Controller {
     public void beliBarang() {
         String beliLagi = "y";
         Integer totalTransaksi = 0;
-        String idKeranjang = DateTimeFormatter.ofPattern("yyMdHHmms").format(now);
-//        while (beliLagi.toLowerCase().equals("y")) {
-//            System.out.println("Masukkan ID Barang");
-//            Integer idBarang = sc.nextInt();
-////            Map<String, String> barang = Barang.select(idBarang);
-////            String nmBarang = barang.get("namaBarang");
-//            Integer hrgBarang = Integer.valueOf(barang.get("hargaBarang"));
-//            System.out.println("Barang yang dibeli : " + nmBarang);
-//            System.out.println("Masukkan Quantity");
-//            Integer qtyBarang = sc.nextInt();
-//            Integer total = hrgBarang * qtyBarang;
-//            Keranjang.insert(Integer.valueOf(idKeranjang), idBarang, qtyBarang, total);
-//            totalTransaksi += total;
-//            System.out.println("Beli lagi ?");
-//            beliLagi = sc.next();
-//        }
+        Integer idKeranjang = new Random().nextInt();
+        while (beliLagi.toLowerCase().equals("y")) {
+            System.out.println("Masukkan ID Barang");
+            Integer idBarang = sc.nextInt();
+            Map<String, String> barang = Barang.select(idBarang);
+            String nmBarang = barang.get("namaBarang");
+            Integer hrgBarang = Integer.valueOf(barang.get("hargaBarang"));
+            Integer stkBarang = Integer.valueOf(barang.get("stockBarang"));
+            System.out.println("Barang yang dibeli : " + nmBarang);
+            System.out.println("Masukkan Quantity");
+            Integer qtyBarang = sc.nextInt();
+            Integer total = hrgBarang * qtyBarang;
+            Keranjang.insert(idKeranjang, idBarang, qtyBarang, total);
+            totalTransaksi += total;
+            System.out.println("Beli lagi ?");
+            beliLagi = sc.next();
+            Integer sisa = stkBarang - qtyBarang;
+            new Barang().update(idBarang, nmBarang, hrgBarang ,sisa );
+        }
 
         Keranjang.select(Integer.valueOf(idKeranjang));
         System.out.println("Uang yang di bayarkan : ");

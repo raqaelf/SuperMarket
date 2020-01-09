@@ -17,11 +17,18 @@ public class MainClass {
         view.menu_Utama();
         Scanner cutama = new Scanner(System.in);
         int ccutama = cutama.nextInt();
-        if(ccutama == 1){
-            Tampilan.menu_barang();
-        } else if(ccutama == 2){
-            view.pembelian();
-        }
+         switch (ccutama) {
+             case 1:
+                 Tampilan.menu_barang();
+                 break;
+             case 2:
+                 view.pembelian();
+                 break;
+             case 3:
+                 System.exit(0);
+             default:
+                 break;
+         }
     }
     public static void main(String[] args) {
         new MainClass().jalankan();

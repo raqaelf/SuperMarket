@@ -13,6 +13,6 @@ public interface Database {
     public String dbHost = "localhost";
     public String dbName = "supermarket";
     public String dbUser = "root";
-    public String dbPass = "";
+    public String dbPass = "aminajah";
 
 }
