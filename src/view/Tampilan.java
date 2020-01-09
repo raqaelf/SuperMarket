@@ -6,6 +6,8 @@
 package view;
 
 import java.util.Scanner;
+import model.Barang;
+import process.Controller;
 
 /**
  *
