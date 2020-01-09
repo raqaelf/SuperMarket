@@ -13,19 +13,21 @@ import java.sql.Statement;
 
 /**
  *
- * @author raqaelf
+ * @author Ahnaffaiz
  */
 public class Transaksi {
 
     public int id_transaksi, id_keranjang, total, pembayaran, kembalian;
     public String tanggal;
-
+    
+    //contructor
     public Transaksi(int id_keranjang, String tanggal, int total) {
         this.tanggal = tanggal;
         this.id_keranjang = id_keranjang;
         this.total = total;
     }
-
+    
+    //contructor
     public Transaksi() {
 
     }
@@ -48,9 +50,9 @@ public class Transaksi {
             statement.setString(4, pembayaran.toString());
             statement.setString(5, kembalian.toString());
 
-            // jalankan query (baca jumlah row affectednya)
+            // jalankan query melihat baris yang terpengaruhi
             int rowsInserted = statement.executeUpdate();
-            // jika ada row affected nya, maka status sukses
+            // jika ada baris yang terpengaruhi
             if (rowsInserted > 0) {
                 System.out.println("Insert data Transaksi sukses");
             }
@@ -65,8 +67,8 @@ public class Transaksi {
 
     public static void select(Integer id_keranjang) {
 
-        // query sql untuk select all data buku
-        String sql = "SELECT t.id_transaksi, t.nama_pembeli,GROUP_CONCAT(k.qty_barang,' ',b.nama_barang SEPARATOR ', ') barang, t.total from db_transaksi t, db_keranjang k, db_barang b where t.id_keranjang=k.id_keranjang and k.id_barang=b.id_barang and t.id_keranjang = " + id_keranjang + " GROUP BY id_transaksi";
+        // query sql untuk select data transaksi
+        String sql = "SELECT t.id_transaksi, t.tanggal,GROUP_CONCAT(k.qty_barang,' ',b.nama_barang SEPARATOR '/n ') barang, t.total from db_transaksi t, db_keranjang k, db_barang b where t.id_keranjang=k.id_keranjang and k.id_barang=b.id_barang and t.id_keranjang = " + id_keranjang + " GROUP BY id_transaksi";
 
         // lakukan koneksi ke mysql
         MySQLConnection m = new MySQLConnection();
@@ -80,18 +82,18 @@ public class Transaksi {
             // membuat header table untuk output
             System.out.println("==============================================================================");
             String header = "%3s %15s %20s %20s";
-            System.out.println(String.format(header, "ID", "NAMA PEMBELI", "BARANG", "TOTAL"));
+            System.out.println(String.format(header, "ID", "TANGGAL", "BARANG", "TOTAL"));
             System.out.println("------------------------------------------------------------------------------");
 
             // looping untuk baca data per record
             while (result.next()) {
-                // baca data buku per record
+                // baca data transaksi per record
                 String idTransaksi = result.getString("id_transaksi");
-                String namaPembeli = result.getString("nama_pembeli");
+                String namaPembeli = result.getString("tanggal");
                 String namaBarang = result.getString("barang");
                 String totalHarga = result.getString("total");
 
-                // tampilkan data buku per record
+                // tampilkan data transaksi per record
                 String output = "%2s %10s %35s %20s";
                 System.out.println(String.format(output, idTransaksi, namaPembeli, namaBarang, totalHarga));
             }
@@ -107,8 +109,8 @@ public class Transaksi {
 
     public static void select() {
 
-        // query sql untuk select all data buku
-        String sql = "SELECT t.id_transaksi, t.nama_pembeli,GROUP_CONCAT(k.qty_barang,' ',b.nama_barang SEPARATOR ', ') barang, t.total from db_transaksi t, db_keranjang k, db_barang b where t.id_keranjang=k.id_keranjang and k.id_barang=b.id_barang GROUP BY id_transaksi";
+        // query sql untuk select all data transaksi
+        String sql = "SELECT t.id_transaksi, t.tanggal,GROUP_CONCAT(k.qty_barang,' ',b.nama_barang SEPARATOR ', ') barang, t.total from db_transaksi t, db_keranjang k, db_barang b where t.id_keranjang=k.id_keranjang and k.id_barang=b.id_barang GROUP BY id_transaksi";
 
         // lakukan koneksi ke mysql
         MySQLConnection m = new MySQLConnection();
@@ -122,7 +124,7 @@ public class Transaksi {
             // membuat header table untuk output
             System.out.println("==============================================================================");
             String header = "%3s %15s %20s %20s";
-            System.out.println(String.format(header, "ID", "NAMA PEMBELI", "BARANG", "TOTAL"));
+            System.out.println(String.format(header, "ID", "TANGGAL", "BARANG", "TOTAL"));
             System.out.println("------------------------------------------------------------------------------");
 
             // looping untuk baca data per record
