@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author Maryam Fadhillah
  */
-public class Barang {
+public class Barang extends AbsModel {
     
     public void insert(String nama_barang, Integer harga_barang, Integer stock_barang){
         MySQLConnection m = new MySQLConnection();
