@@ -64,6 +64,7 @@ public class Transaksi {
         // query sql untuk hapus data buku berdasarkan id_barang
         String sql = "DELETE FROM db_transaksi WHERE id_transaksi=?";
         // lakukan koneksi ke mysql
+        // contoh
         MySQLConnection m = new MySQLConnection();
         Connection koneksi = m.conn;
 
