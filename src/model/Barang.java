@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package model;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,42 +16,32 @@ import java.sql.Statement;
  */
 public class Barang {
     
-    
-     // insert data buku
     public void insert(String nama_barang, Integer harga_barang, Integer stock_barang){
-        // lakukan koneksi ke mysql
         MySQLConnection m = new MySQLConnection();
         Connection koneksi = m.conn;
         
-        // query sql untuk insert data buku
         String sql = "INSERT INTO db_barang (nama_barang, harga_barang, stock_barang) VALUES (?, ?, ?)";
  
         try {
             PreparedStatement statement = koneksi.prepareStatement(sql);
             
-            // mapping nilai parameter dari query sql nya (sesuai urutan)
             statement.setString(1, nama_barang);
             statement.setString(2, harga_barang.toString());
             statement.setString(3, stock_barang.toString());
 
-            // jalankan query (baca jumlah row affectednya)
             int rowsInserted = statement.executeUpdate();
-            // jika ada row affected nya, maka status sukses
             if (rowsInserted > 0) {
                 System.out.println("Insert barang sukses");
             }
 
         } catch (SQLException ex) {
-            // jika query gagal
             System.out.println("Insert barang gagal");
         }
     }
    
    
-    // delete data buku berdasarkan idbook
     public void delete(Integer id_barang){
         
-        // query sql untuk hapus data buku berdasarkan idbook
         String sql = "DELETE FROM db_barang WHERE id_barang=?";
         // lakukan koneksi ke mysql
         MySQLConnection m = new MySQLConnection();
@@ -76,10 +65,8 @@ public class Barang {
         
     }
     
-    // update data buku berdasarkan idbook
     public void update(Integer id_barang, String nama_barang, Integer harga_barang, Integer stock_barang){
         
-        // query sql untuk update data buku berdasarkan idbook
         String sql = "UPDATE db_barang SET nama_barang=?, harga_barang=?, stock_barang=?, WHERE id_barang=?";
         // lakukan koneksi ke mysql
         MySQLConnection m = new MySQLConnection();
@@ -103,10 +90,8 @@ public class Barang {
         }
     }
     
-    // tampilkan semua data buku
     public void select(){
         
-        // query sql untuk select all data buku
         String sql = "SELECT * FROM db_barang";
         
         // lakukan koneksi ke mysql
@@ -183,12 +168,5 @@ public class Barang {
 //            System.out.println("Tampil barang gagal");
 //        }}
     
-    public static void main(String[] args) {
-        
-        Barang brg = new Barang();
-//        brg.insert("makanan", 2000, 20);
-//        brg.select();
-          brg.update(2, "gelas", 20000, 52);
-    }
     
 }
