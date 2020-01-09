@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.util.Scanner;
+
 /**
  *
  * @author raqaelf
