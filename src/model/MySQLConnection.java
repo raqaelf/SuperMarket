@@ -34,10 +34,6 @@ public class MySQLConnection implements config.Database {
             System.out.println("Penutupan koneksi gagal");
         }
     }
-    
-    public static void main(String[] args) {
-        MySQLConnection test = new MySQLConnection();
-        
-    }
+
 
 }

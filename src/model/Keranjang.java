@@ -309,8 +309,5 @@ public class Keranjang {
 
 
     }
-    public static void main(String[] args) {
-        Keranjang.select(2019161716);
-    }
 }
 
