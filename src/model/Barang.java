@@ -130,43 +130,6 @@ public class Barang {
     
     }
     
-//    public void select(Integer id_barang, String nama_barang, Integer harga_barang, Integer stock_barang){  
-//        
-//        // query sql untuk select all data buku
-//        String sql = "SELECT * FROM db_barang WHERE id_barang=?";
-//        
-//        // lakukan koneksi ke mysql
-//        MySQLConnection m = new MySQLConnection();
-//        Connection koneksi = m.conn;
-//        
-//        try {
-//            Statement statement = koneksi.createStatement();
-//            // jalankan query
-//            ResultSet result = statement.executeQuery(sql);
-//
-//            // membuat header table untuk output
-//            System.out.println("==============================================================================");
-//            String header = "%3s %20s %20s %20s";
-//            System.out.println(String.format(header, "ID", "NAMA BARANG", "HARGA BARANG", "STOCK"));
-//            System.out.println("------------------------------------------------------------------------------");
-//            
-//            // looping untuk baca data per record
-//            while (result.next()){
-//                // baca data buku per record
-//                String id_barang = result.getString("id_barang");
-//                String nama_barang = result.getString("nama_barang");
-//                String harga_barang = result.getString("harga_barang");
-//                String stock_barang = result.getString("stock_barang");
-//                // tampilkan data buku per record
-//                String output = "%3s %20s %20s %20s %4s";
-//                System.out.println(String.format(output, id_barang, nama_barang, harga_barang, stock_barang));
-//            }
-//            
-//            System.out.println("==============================================================================");
-//            
-//        } catch (SQLException ex){
-//            System.out.println("Tampil barang gagal");
-//        }}
     
     
 }
