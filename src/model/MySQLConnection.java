@@ -21,7 +21,6 @@ public class MySQLConnection implements config.Database {
             String dbURL = "jdbc:mysql://"+ this.dbHost +":3306/" + this.dbName;
             this.conn = DriverManager.getConnection(dbURL, this.dbUser, this.dbPass);
             if (this.conn != null) {
-//                System.out.println("Connected");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
