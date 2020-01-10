@@ -74,6 +74,8 @@ public class Tampilan {
         System.out.println("================================");
         System.out.println("           Pembelian            ");
         System.out.println("================================");
+        Barang brg = new Barang();
+        brg.select();
         ctr.beliBarang();
         System.out.println("================================");
         System.out.print("Pilih salah satu: ");
