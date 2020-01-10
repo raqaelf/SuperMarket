@@ -7,7 +7,9 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -65,4 +67,60 @@ public class Transaksi {
 
 
     }
+    
+    public static void selectId(Integer id_keranjang){
+        String IdTransaksi;
+        
+        // query sql untuk select data transaksi berdasarkan id_keranjang
+        String sql = "SELECT id_transaksi FROM db_transaksi WHERE db_transaksi.id_keranjang=" + id_keranjang+ ";";
+        
+        // lakukan koneksi ke mysql
+        MySQLConnection m = new MySQLConnection();
+        Connection koneksi = m.conn;
+        
+        try {
+            Statement statement = koneksi.createStatement();
+            // jalankan query
+            ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()){
+                // mengambil data barang
+                IdTransaksi = result.getString("id_transaksi");
+                System.out.println(IdTransaksi);
+            }
+            m.close();
+        } catch (SQLException ex){
+            System.out.println("Tampil Id transaksi Gagal");
+            m.close();
+        }
+    }
+    
+    public static void selectTanggal(Integer id_keranjang){
+        String Tanggal;
+        
+        // query sql untuk select data transaksi berdasarkan id_keranjang
+        String sql = "SELECT tanggal FROM db_transaksi WHERE db_transaksi.id_keranjang=" + id_keranjang+ ";";
+        
+        // lakukan koneksi ke mysql
+        MySQLConnection m = new MySQLConnection();
+        Connection koneksi = m.conn;
+        
+        try {
+            Statement statement = koneksi.createStatement();
+            // jalankan query
+            ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()){
+                // mengambil data barang
+                Tanggal = result.getString("tanggal");
+                System.out.println(Tanggal);
+            }
+            m.close();
+        } catch (SQLException ex){
+            System.out.println("Tampil Id transaksi Gagal");
+            m.close();
+        }
+    }
+    
+    
 }
