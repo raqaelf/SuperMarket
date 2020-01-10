@@ -20,7 +20,7 @@ public class Keranjang {
 
 
 
-    //Contructor
+    //Constructor
 
     public Keranjang(int id_keranjang, int id_barang, int qty_barang, int total) {
 
@@ -33,16 +33,6 @@ public class Keranjang {
         this.total = total;
 
     }
-
-
-
-    public Keranjang() {
-
-
-
-    }
-
-
 
     public static void insert(Integer id_keranjang, Integer id_barang, Integer qty_barang, Integer total) {
 
@@ -106,8 +96,6 @@ public class Keranjang {
 
     }
 
-// delete data barang berdasarkan id_barang
-
 
 
     public static void delete(Integer id_keranjang) {
@@ -170,7 +158,7 @@ public class Keranjang {
 
 
 
-        // query sql untuk update data buku berdasarkan idbook
+        // query sql untuk update data keranjang berdasarkan id_barang
 
         String sql = "UPDATE db_barang SET nama_barang=?, harga_barang=?, stock_barang=? WHERE id_barang=?";
 
@@ -222,13 +210,13 @@ public class Keranjang {
 
 
 
-    // tampilkan semua data buku
+    // tampilkan data barang berdasarkan id_keranjang
 
     public static void select(Integer id_keranjang) {
 
 
 
-        // query sql untuk select all data buku
+        // query sql untuk select data barang
 
         String sql = "SELECT b.nama_barang, b.harga_barang, k.qty_barang, k.total from db_keranjang k, db_barang b where k.id_barang = b.id_barang and k.id_keranjang =" + id_keranjang;
 
@@ -268,7 +256,7 @@ public class Keranjang {
 
             while (result.next()) {
 
-                // baca data buku per record
+                // baca data barang per record
 
                 String nmBarang = result.getString("nama_barang");
 
@@ -280,7 +268,7 @@ public class Keranjang {
 
                 totalTrx += Integer.valueOf(total);
 
-                // tampilkan data buku per record
+                // tampilkan data barang per record
 
                 String output = "%3s %25s %20s %20s";
 
